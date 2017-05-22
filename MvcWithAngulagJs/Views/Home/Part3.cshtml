@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Part3";
+}
+
+<h2>Part3 - Create Login Page</h2>
+<style>
+    .error {
+        color:red;
+    }
+</style>
+<div ng-controller="Part3Controller">
+    <form novalidate name="f1" ng-submit="Login()" method="post">
+        <div style="color:green">{{Message}}</div>
+        <table ng-show="!IsLoggedIn">
+            <tr>
+                <td>User Name:</td>
+                <td>
+                    <input type="text" ng-model="LoginData.Username" name="cUsername" ng-class="Submitted ? ng-dirty: ''" required autofocus/>
+                    <span class="error" ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required">User Name required</span>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input type="password" ng-model="LoginData.Password" name="cPassword" ng-class="Submitted ? ng-dirty: ''" required autofocus />
+                    <span class="error" ng-show="(f1.cPassword.$dirty || Submitted) && f1.cPassword.$error.required">password required required</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input  type="submit" value="Login"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@section scripts{
+<script src="~/Scripts/AngularController/Part3Controller.js"></script>
+}
+

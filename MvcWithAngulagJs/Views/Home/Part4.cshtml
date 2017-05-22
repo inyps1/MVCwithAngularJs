@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Part4";
+}
+
+<h2>Part4</h2>
+<style>
+    .odd {
+        background-color:#f5ebc3;
+    }
+    .even {
+        background-color:#f4f8d5
+    }
+</style>
+<div ng-controller="Part4Controller">
+    <table width="80%" border="1" cellpadding="0" cellspacing="0" class="table-hover">
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Hire Date</th>
+            <th>Addres</th>
+            <th>City</th>
+            <th>Postal Code</th>
+        </tr>
+        <tr ng-repeat="a in Employees" ng-class-odd="'odd'" ng-class-even="'even'">
+            <td>{{a.EmployeeId}}</td>
+            <td>{{a.FirstName}} {{a.LastName}}</td>
+            <td>{{a.HireDate.slice(6,-2) | date: 'dd-MM-yyyy'}}</td>
+            <td>{{a.Address}}</td>
+            <td>{{a.City}}</td>
+            <td>{{a.PostalCode}}</td>
+        </tr>
+    </table>
+</div>
+
+@section scripts{
+<script src="~/Scripts/AngularController/Part4Controller.js"></script>
+    }

@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Part7";
+}
+<style>
+    .odd {
+        background-color: #f5ebc3;
+    }
+
+    .even {
+        background-color: #f4f8d5;
+    }
+</style>
+<h2>Part7 -- Nested Tabular Data using Angular JS</h2>
+<div ng-controller="Part7Controller">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Contact Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Postal Code</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="o in Orders">
+            <tr ng-class-even="'even'" ng-class-odd="odd">
+                <td class="CX"><span>+</span></td>
+                <td>{{o.Customer.ContactName}}</td>
+                <td>{{o.Customer.Phone}}</td>
+                <td>{{o.Customer.Address}}</td>
+                <td>{{o.Customer.City}}</td>
+                <td>{{o.Customer.PostalCode}}</td>
+            </tr>
+            <tr class="sub" style="display:none">
+                <td colspan="5">
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Order Date</th>
+                            <th>Shipped Date</th>
+                            <th>Ship Name</th>
+                            <th>Ship Address</th>
+                            <th>Postal Code</th>
+                        </tr>
+                        <tr ng-repeat="a in o.Orders" ng-class-even="'even'" ng-class-odd="'odd'">
+                            
+                            <td>{{a.OrderId}}</td>
+                            <td>{{a.OrderDate.slice(6,-2) | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{a.ShippedDate.slice(6,-2) | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{a.ShipName}}</td>
+                            <td>{{a.ShipAddress}}</td>
+                            <td>{{a.ShipPostalCode}}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+<script src="~/Scripts/AngularController/Part7Controller.js"></script>
+<script>
+    $(function () {
+        
+        $('body').on('click', '.CX span', function () {
+            if ($(this).text() == '+') {
+                $(this).text('-');
+            }
+            else {
+                $(this).text('+')
+            }
+            $(this).closest('tr')
+            .next('tr')
+            .toggle();
+        });
+    });
+    </script>
+    }

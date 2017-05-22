@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Part6";
+}
+
+<h2>Part6 -- simple Registration Form</h2>
+<style>
+    .error {
+        color:red;
+        border-color:red;
+    }
+</style>
+<div ng-controller="Part6Controller">
+    <form  novalidate name="f1" ng-submit="SaveData(User)" >
+        <div style="color:red;">
+            {{message}}
+        </div>
+        <table>
+            <tr>
+                <td>Full Name:</td>
+                <td>
+                    <input type="text" ng-model="User.FullName" name="uFullName" ng-class="submitted?ng-dirty:'' " required autofocus/>
+                    <span class="error" ng-show="(f1.uFullName.$dirty || submitted)&& f1.uFullName.$error.required">Full Name required</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    @*<input type="text" ng-model="User.Email" name="uEmail" ng-class="submitted?ng-dirty:'' "/>
+                    <span class="error" ng-show="(f1.uEmail.$dirty || submitted)&& f1.uEmail.$error.email">Email not valid</span>*@
+
+                    <input type="email" ng-model="User.Email" name="uEmail" ng-class="submitted?ng-dirty:'' "/>
+        <span class="error" ng-show="(f1.uEmail.$dirty || submitted)&& f1.uEmail.$error.email">Email not valid</span>
+                 
+                </td>
+            </tr>
+            <tr>
+                <td>User Name:</td>
+                <td>
+                    <input type="text" ng-model="User.Username" name="uUsername" ng-class="submitted?ng-dirty:'' " required autofocus />
+                    <span class="error" ng-show="(f1.uUsername.$dirty || submitted)&& f1.uUsername.$error.required">User Name required</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input type="password" ng-model="User.Password" name="uPassword" ng-class="submitted?ng-dirty:'' " required autofocus />
+                    <span class="error" ng-show="(f1.uPassword.$dirty || submitted)&& f1.uPassword.$error.required">Password required</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Gender:</td>
+                <td>
+                    <input type="radio" ng-model="User.Gender" name="uGender" value="Male" required /> Male
+                    <input type="radio" ng-model="User.Gender" name="uGender" value="Male" required /> Female
+                    <span class="error" ng-show="(f1.uGender.$dirty || submitted)&& f1.uGender.$error.required">Gender required</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="{{submittedText}}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@section scripts{
+<script src="~/Scripts/AngularController/Part6Controller.js"></script>
+    }
+
